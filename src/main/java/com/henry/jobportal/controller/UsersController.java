@@ -2,6 +2,7 @@ package com.henry.jobportal.controller;
 
 import com.henry.jobportal.entity.Users;
 import com.henry.jobportal.entity.UsersType;
+import com.henry.jobportal.services.UsersService;
 import com.henry.jobportal.services.UsersTypeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,12 @@ import java.util.List;
 @Controller
 public class UsersController {
     private final UsersTypeService usersTypeService;
+    private final UsersService usersService;
 
     @Autowired
-    public UsersController(UsersTypeService usersTypeService) {
+    public UsersController(UsersTypeService usersTypeService, UsersService usersService) {
         this.usersTypeService = usersTypeService;
+        this.usersService = usersService;
     }
 
     @GetMapping("/register")
@@ -31,7 +34,8 @@ public class UsersController {
 
     @PostMapping("/register/new")
     public String userRegistration(@Valid Users users) {
-        System.out.println("Users: "+users);
+        System.out.println("Users: " + users);
+        usersService.addNew(users);
         return "dashboard";
     }
 }
