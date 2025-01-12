@@ -9,8 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 //@EntityScan(basePackages = "com.henry.jobportal.entity")
 public class JobportalApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(JobportalApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(JobportalApplication.class, args);
+    }
 
 }
