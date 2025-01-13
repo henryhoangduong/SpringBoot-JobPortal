@@ -39,6 +39,9 @@ public class RecruiterProfile {
     public RecruiterProfile() {
     }
 
+    public RecruiterProfile(Users users) {
+    }
+
     @Override
     public String toString() {
         return "RecruiterProfile{" +
