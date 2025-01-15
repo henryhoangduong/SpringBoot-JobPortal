@@ -30,7 +30,8 @@ public class JobSeekerProfile {
     @OneToMany(targetEntity = Skills.class, cascade = CascadeType.ALL, mappedBy = "jobSeekerProfile")
     private List<Skills> skills;
 
-    public JobSeekerProfile() {
+    public JobSeekerProfile(Users userId) {
+        this.userId = userId;
     }
 
     public JobSeekerProfile(int userAccountId, Users userId, String firstName, String lastName, String city, String state, String workAuthorization, String employmentType, String resume, String profilePhoto, List<Skills> skills) {
@@ -45,9 +46,6 @@ public class JobSeekerProfile {
         this.resume = resume;
         this.profilePhoto = profilePhoto;
         this.skills = skills;
-    }
-
-    public JobSeekerProfile(Users users) {
     }
 
     public int getUserAccountId() {

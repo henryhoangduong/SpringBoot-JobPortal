@@ -24,6 +24,10 @@ public class RecruiterProfile {
     @Column(nullable = true, length = 64)
     private String profilePhoto;
 
+    public RecruiterProfile() {
+
+    }
+
     public RecruiterProfile(int userAccountId, Users userId, String firstName, String lastName, String city, String state, String country, String company, String profilePhoto) {
         this.userAccountId = userAccountId;
         this.userId = userId;
@@ -36,11 +40,10 @@ public class RecruiterProfile {
         this.profilePhoto = profilePhoto;
     }
 
-    public RecruiterProfile() {
+    public RecruiterProfile(Users userId) {
+        this.userId = userId;
     }
 
-    public RecruiterProfile(Users users) {
-    }
 
     @Override
     public String toString() {
