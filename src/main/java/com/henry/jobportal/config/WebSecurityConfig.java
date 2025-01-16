@@ -41,32 +41,31 @@ public class WebSecurityConfig {
 
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        http.authenticationProvider(authenticationProvider());
+
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers(publicUrl).permitAll();
             auth.anyRequest().authenticated();
         });
-        http.formLogin(
-                        form -> form.loginPage("/login").permitAll()
-                                .successHandler(
-                                        customAuthenticationSuccessHandler
-                                )
 
-                ).logout(logout -> {
+        http.formLogin(form -> form.loginPage("/login").permitAll()
+                        .successHandler(customAuthenticationSuccessHandler))
+                .logout(logout -> {
                     logout.logoutUrl("/logout");
                     logout.logoutSuccessUrl("/");
                 }).cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable());
 
         return http.build();
-
     }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-        daoAuthenticationProvider.setUserDetailsService(customUserDetailsService);
-        return daoAuthenticationProvider;
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        authenticationProvider.setUserDetailsService(customUserDetailsService);
+        return authenticationProvider;
     }
 
     @Bean

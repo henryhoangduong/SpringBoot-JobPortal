@@ -22,17 +22,18 @@ public class CustomUserDetails implements UserDetails {
         UsersType usersType = users.getUserTypeId();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(usersType.getUserTypeName()));
-        return List.of();
+        System.out.println("authorities: "+authorities);
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return "";
+        return users.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return "";
+        return users.getEmail();
     }
 
     @Override
