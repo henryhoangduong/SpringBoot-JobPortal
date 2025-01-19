@@ -14,7 +14,12 @@ public class RecruiterProfileService {
     public RecruiterProfileService(RecruiterProfileRepository recruiterProfileRepository) {
         this.recruiterProfileRepository = recruiterProfileRepository;
     }
-    public Optional<RecruiterProfile> getOne(Integer id){
+
+    public Optional<RecruiterProfile> getOne(Integer id) {
         return recruiterProfileRepository.findById(id);
+    }
+
+    public RecruiterProfile addNew(RecruiterProfile recruiterProfile) {
+        return recruiterProfileRepository.save(recruiterProfile);
     }
 }
